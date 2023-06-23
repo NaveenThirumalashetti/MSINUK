@@ -1,6 +1,9 @@
 package com.msinuk.main.model;
 
+import java.util.Map;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,17 +19,35 @@ public class UniversityDetails {
 	@Column(name = "university_name")
 	private String universityName;
 	private String address;
-	private String[] courses;
+	@ElementCollection
+	private Map<String,String[]> courses;
 	private double rating;
-	private String departments;
+	private String[] departments;
 	private String description;
-	private String images;
+	private String[] images;
 	private String contactDetails;
 	
-	public String getImages() {
+	
+	public UniversityDetails() {
+		
+	}
+	
+	public UniversityDetails(long id, String universityName, String address, Map<String,String[]> courses, double rating,
+			String[] departments, String description, String[] images, String contactDetails) {
+		this.id = id;
+		this.universityName = universityName;
+		this.address = address;
+		this.courses = courses;
+		this.rating = rating;
+		this.departments = departments;
+		this.description = description;
+		this.images = images;
+		this.contactDetails = contactDetails;
+	}
+	public String[] getImages() {
 		return images;
 	}
-	public void setImages(String images) {
+	public void setImages(String[] images) {
 		this.images = images;
 	}
 	public String getContactDetails() {
@@ -53,10 +74,10 @@ public class UniversityDetails {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String[] getCourses() {
+	public Map<String,String[]> getCourses() {
 		return courses;
 	}
-	public void setCourses(String[] courses) {
+	public void setCourses(Map<String,String[]> courses) {
 		this.courses = courses;
 	}
 	public double getRating() {
@@ -65,10 +86,10 @@ public class UniversityDetails {
 	public void setRating(double rating) {
 		this.rating = rating;
 	}
-	public String getDepartments() {
+	public String[] getDepartments() {
 		return departments;
 	}
-	public void setDepartments(String departments) {
+	public void setDepartments(String[] departments) {
 		this.departments = departments;
 	}
 	public String getDescription() {
