@@ -1,16 +1,15 @@
 package com.msinuk.main.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.msinuk.main.model.University;
 import com.msinuk.main.model.UniversityDetails;
 import com.msinuk.main.service.UniversityService;
 
@@ -24,18 +23,18 @@ public class UniversityController {
 
 	
 	@GetMapping("/Universities")
-	public List<University> getUniversities(){
+	public List<UniversityDetails> getUniversities(){
 		return this.service.getUniversities();
 	}
 	
 	@GetMapping("/getUniversities")
-	public List<University> getUniversitiesByName(@RequestParam("uname") String universityName, @RequestParam("cname") String courseName,
+	public List<UniversityDetails> getUniversitiesByName(@RequestParam("uname") String universityName, @RequestParam("cname") String courseName,
 			@RequestParam("department") String department){
 		return this.service.getUniversitiesByName(universityName);
 	}
-	@GetMapping("/getUniversity/{uname}")
-	public UniversityDetails getUniversityByName(@PathVariable("uname") String universityName){
-		return this.service.getUniversityByName(universityName);
+	@GetMapping("/getUniversity")
+	public Optional<UniversityDetails> getUniversityByName(@RequestParam("id") String unid){
+		return this.service.getUniversityById(unid);
 	}
 
 }
