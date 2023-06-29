@@ -20,10 +20,14 @@ public class UniversityDetails {
 	private String universityName;
 	private String address;
 	@ElementCollection
+	@Column(length = 1000)
 	private Map<String,String[]> courses;
 	private double rating;
+	@Column(length = 1000)
 	private String[] departments;
+	@Column(length=1000)
 	private String description;
+	@Column(length = 1000)
 	private String[] images;
 	private String contactDetails;
 	

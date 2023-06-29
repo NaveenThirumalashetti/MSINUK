@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.msinuk.main.model.UniversityDetails;
 import com.msinuk.main.service.UniversityService;
 
@@ -25,6 +27,10 @@ public class UniversityController {
 	@GetMapping("/Universities")
 	public List<UniversityDetails> getUniversities(){
 		return this.service.getUniversities();
+	}
+	@GetMapping("/addUniversities")
+	public List<UniversityDetails> addUniversities() throws JsonMappingException, JsonProcessingException{
+		return this.service.addUniversities();
 	}
 	
 	@GetMapping("/getUniversities")
