@@ -138,10 +138,10 @@ public class UniversityService {
 	    Map <String, String[]> courses = mapper.readValue(jSon, new TypeReference<Map<String,String[]>>(){});
 		
 		String[] departments = {"Accounting and Finance","Arts","Business Administration","Business and Management","Computing and Information Systems","Economics","Education and Teaching","Engineering","English Language and Literature","Global Media and Digital Cultures","Health","Humanities","Law","Mathematics and Statistics","Science and Technology","Social Sciences"};
-		String description= "We are a federal University, consisting of 17 independent Member Institutions. As a world leader in higher education, the University has pioneered change since 1836."
-				+ "	Our passion for increasing access to education and mobilising the collective power and expertise of the federation is central to our ability to transform lives around the world and address the global challenges of the future.";
-		String[] images = {"UniversityofLondon.jpg","UniversityofLondon1.jpg","UniversityofLondon2.jpg","UniversityofLondon3.jpg"};
-		UniversityDetails undetails = new UniversityDetails(2, "University of London", "Senate House Malet Street London WC1E 7HU", courses, 4.4, departments, description, images, "Telephone: +44 (0)20 7862 8000.");
+		String description= "The University of Leicester is in the East Midlands and currently has around 20,000 students enrolled, of which 1,500 of whom are international from over 80 different countries. The University of Leicester is one of the UK’s fastest growing universities and is currently undergoing a £300 million campus redevelopment programme. The University of Leicester was voted 'University of the Year' by the Times in 2008, and finished runner up in the same category in 2014"
+				+ "	Leicester is well known for the strength of it its research, with its Archaeology department recently discovered the remains of Richard III, pushing it into the international spotlight. The Department of Physics and Astronomy hosts Europe’s largest university-based space research facility and the School of Museum Studies remains one of the top research departments in the country, containing the highest ranking research in Museum Studies in the UK.";
+		String[] images = {"UniversityofLeicester.jpg","UniversityofLeicester1.jpg","UniversityofLeicester2.jpg","UniversityofLeicester3.jpg"};
+		UniversityDetails undetails = new UniversityDetails(4, "University of Leicester", "University Road, Leicester, LE1 7RH UK", courses, 4, departments, description, images, "Telephone:  +44 (0)116 252 2522.");
 				
 		this.universityRepo.save(undetails);
 	
