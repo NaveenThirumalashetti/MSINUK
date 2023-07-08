@@ -36,7 +36,7 @@ public class UniversityController {
 	@GetMapping("/getUniversities")
 	public List<UniversityDetails> getUniversitiesByName(@RequestParam("uname") String universityName, @RequestParam("cname") String courseName,
 			@RequestParam("department") String department){
-		return this.service.getUniversitiesByName(universityName);
+		return this.service.getUniversitiesByName(universityName,courseName,department);
 	}
 	@GetMapping("/getUniversity")
 	public Optional<UniversityDetails> getUniversityByName(@RequestParam("id") String unid){

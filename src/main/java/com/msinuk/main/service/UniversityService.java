@@ -13,12 +13,25 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.msinuk.main.model.UniversityDetails;
 import com.msinuk.main.repository.UniversityDetailsRepo;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.JoinType;
+import jakarta.persistence.criteria.MapJoin;
+import jakarta.persistence.criteria.Path;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+
 @Service
 public class UniversityService {
 
 
 	@Autowired
 	private UniversityDetailsRepo universityRepo;
+	
+	@PersistenceContext
+    private EntityManager entityManager;
 
 	public List<UniversityDetails> getUniversities() {
 		return this.universityRepo.findAll();
@@ -147,9 +160,30 @@ public class UniversityService {
 	
 	return this.universityRepo.findAll();
 	}
-	public List<UniversityDetails> getUniversitiesByName(String universityName) {
-		// TODO Auto-generated method stub
-		return this.universityRepo.findByUniversityName(universityName);
+	public List<UniversityDetails> getUniversitiesByName(String universityName, String courseName, String department) {
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<UniversityDetails> query = cb.createQuery(UniversityDetails.class);
+        Root<UniversityDetails> university = query.from(UniversityDetails.class);
+        
+        //MapJoin<UniversityDetails, String, String[]> courseJoin = university.join(UniversityDetails_.courses, JoinType.INNER);
+        
+        List<Predicate> predicates = new ArrayList<>();
+        if(!universityName.equalsIgnoreCase("undefined")) {
+        	Path<String> uName = university.get("universityName");
+        	predicates.add(cb.like(uName, universityName));
+        }
+        if(!courseName.equalsIgnoreCase("undefined")) {
+        	Path<String> course = university.get("courses");
+        	predicates.add(cb.like(course, courseName));
+        }
+        if (!department.equalsIgnoreCase("undefined")) {
+        	Path<String> dName = university.get("departments");
+        	predicates.add(cb.like(dName, department));
+        }
+        query.select(university)
+            .where(cb.or(predicates.toArray(new Predicate[predicates.size()])));
+
+        return entityManager.createQuery(query).getResultList();
 	}
 	
 	public Optional<UniversityDetails> getUniversityById(String unId) {
