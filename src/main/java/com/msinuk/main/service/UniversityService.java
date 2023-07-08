@@ -34,7 +34,7 @@ public class UniversityService {
     private EntityManager entityManager;
 
 	public List<UniversityDetails> getUniversities() {
-		return this.universityRepo.findAll();
+		return this.universityRepo.findAllByOrderByRatingDesc();
 	}
 	public List<UniversityDetails> addUniversities() throws JsonMappingException, JsonProcessingException {
 	
@@ -158,7 +158,7 @@ public class UniversityService {
 				
 		this.universityRepo.save(undetails);
 	
-	return this.universityRepo.findAll();
+	return this.universityRepo.findAllByOrderByRatingDesc();
 	}
 	public List<UniversityDetails> getUniversitiesByName(String universityName, String courseName, String department) {
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
@@ -170,18 +170,18 @@ public class UniversityService {
         List<Predicate> predicates = new ArrayList<>();
         if(!universityName.equalsIgnoreCase("undefined")) {
         	Path<String> uName = university.get("universityName");
-        	predicates.add(cb.like(uName, universityName));
+        	predicates.add(cb.like(uName, "%"+universityName+"%"));
         }
         if(!courseName.equalsIgnoreCase("undefined")) {
         	Path<String> course = university.get("courses");
-        	predicates.add(cb.like(course, courseName));
+        	predicates.add(cb.like(course, "%"+courseName+"%"));
         }
         if (!department.equalsIgnoreCase("undefined")) {
         	Path<String> dName = university.get("departments");
-        	predicates.add(cb.like(dName, department));
+        	predicates.add(cb.like(dName, "%"+department+"%"));
         }
-        query.select(university)
-            .where(cb.or(predicates.toArray(new Predicate[predicates.size()])));
+        query.select(university).where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
+        query.orderBy(cb.desc(university.get("rating")));
 
         return entityManager.createQuery(query).getResultList();
 	}
