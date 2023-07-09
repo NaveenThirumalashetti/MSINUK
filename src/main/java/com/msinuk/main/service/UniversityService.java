@@ -11,12 +11,15 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.msinuk.main.model.UniversityDetails;
+import com.msinuk.main.model.UniversityDetails_;
 import com.msinuk.main.repository.UniversityDetailsRepo;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.MapJoin;
 import jakarta.persistence.criteria.Path;
@@ -149,12 +152,10 @@ public class UniversityService {
 	    mapper.enable(SerializationFeature.INDENT_OUTPUT);
 	    @SuppressWarnings("unchecked")
 	    Map <String, String[]> courses = mapper.readValue(jSon, new TypeReference<Map<String,String[]>>(){});
-		
-		String[] departments = {"Accounting and Finance","Arts","Business Administration","Business and Management","Computing and Information Systems","Economics","Education and Teaching","Engineering","English Language and Literature","Global Media and Digital Cultures","Health","Humanities","Law","Mathematics and Statistics","Science and Technology","Social Sciences"};
 		String description= "The University of Leicester is in the East Midlands and currently has around 20,000 students enrolled, of which 1,500 of whom are international from over 80 different countries. The University of Leicester is one of the UK’s fastest growing universities and is currently undergoing a £300 million campus redevelopment programme. The University of Leicester was voted 'University of the Year' by the Times in 2008, and finished runner up in the same category in 2014"
 				+ "	Leicester is well known for the strength of it its research, with its Archaeology department recently discovered the remains of Richard III, pushing it into the international spotlight. The Department of Physics and Astronomy hosts Europe’s largest university-based space research facility and the School of Museum Studies remains one of the top research departments in the country, containing the highest ranking research in Museum Studies in the UK.";
 		String[] images = {"UniversityofLeicester.jpg","UniversityofLeicester1.jpg","UniversityofLeicester2.jpg","UniversityofLeicester3.jpg"};
-		UniversityDetails undetails = new UniversityDetails(4, "University of Leicester", "University Road, Leicester, LE1 7RH UK", courses, 4, departments, description, images, "Telephone:  +44 (0)116 252 2522.");
+		UniversityDetails undetails = new UniversityDetails(4, "University of Leicester", "University Road, Leicester, LE1 7RH UK", courses, 4, description, images, "Telephone:  +44 (0)116 252 2522.");
 				
 		this.universityRepo.save(undetails);
 	
@@ -165,20 +166,19 @@ public class UniversityService {
         CriteriaQuery<UniversityDetails> query = cb.createQuery(UniversityDetails.class);
         Root<UniversityDetails> university = query.from(UniversityDetails.class);
         
-        //MapJoin<UniversityDetails, String, String[]> courseJoin = university.join(UniversityDetails_.courses, JoinType.INNER);
-        
+        MapJoin<UniversityDetails, String, String[]> courseJoin = university.join(UniversityDetails_.courses, JoinType.INNER);
+        Path<String> departmentPath= courseJoin.key();
+        Expression<String> coursePath= courseJoin.value().as(String.class);
         List<Predicate> predicates = new ArrayList<>();
         if(!universityName.equalsIgnoreCase("undefined")) {
         	Path<String> uName = university.get("universityName");
         	predicates.add(cb.like(uName, "%"+universityName+"%"));
         }
         if(!courseName.equalsIgnoreCase("undefined")) {
-        	Path<String> course = university.get("courses");
-        	predicates.add(cb.like(course, "%"+courseName+"%"));
+        	predicates.add(cb.like(coursePath, "%"+courseName+"%"));
         }
         if (!department.equalsIgnoreCase("undefined")) {
-        	Path<String> dName = university.get("departments");
-        	predicates.add(cb.like(dName, "%"+department+"%"));
+        	predicates.add(cb.like(departmentPath, "%"+department+"%"));
         }
         query.select(university).where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
         query.orderBy(cb.desc(university.get("rating")));

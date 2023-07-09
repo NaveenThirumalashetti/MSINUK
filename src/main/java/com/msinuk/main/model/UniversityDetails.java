@@ -23,8 +23,6 @@ public class UniversityDetails {
 	@Column(length = 2000)
 	private Map<String,String[]> courses;
 	private double rating;
-	@Column(length = 2000)
-	private String[] departments;
 	@Column(length=2000)
 	private String description;
 	@Column(length = 2000)
@@ -37,13 +35,12 @@ public class UniversityDetails {
 	}
 	
 	public UniversityDetails(long id, String universityName, String address, Map<String,String[]> courses, double rating,
-			String[] departments, String description, String[] images, String contactDetails) {
+			String description, String[] images, String contactDetails) {
 		this.id = id;
 		this.universityName = universityName;
 		this.address = address;
 		this.courses = courses;
 		this.rating = rating;
-		this.departments = departments;
 		this.description = description;
 		this.images = images;
 		this.contactDetails = contactDetails;
@@ -89,12 +86,6 @@ public class UniversityDetails {
 	}
 	public void setRating(double rating) {
 		this.rating = rating;
-	}
-	public String[] getDepartments() {
-		return departments;
-	}
-	public void setDepartments(String[] departments) {
-		this.departments = departments;
 	}
 	public String getDescription() {
 		return description;
