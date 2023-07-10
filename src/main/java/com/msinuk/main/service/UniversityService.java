@@ -155,7 +155,8 @@ public class UniversityService {
 		String description= "The University of Leicester is in the East Midlands and currently has around 20,000 students enrolled, of which 1,500 of whom are international from over 80 different countries. The University of Leicester is one of the UK’s fastest growing universities and is currently undergoing a £300 million campus redevelopment programme. The University of Leicester was voted 'University of the Year' by the Times in 2008, and finished runner up in the same category in 2014"
 				+ "	Leicester is well known for the strength of it its research, with its Archaeology department recently discovered the remains of Richard III, pushing it into the international spotlight. The Department of Physics and Astronomy hosts Europe’s largest university-based space research facility and the School of Museum Studies remains one of the top research departments in the country, containing the highest ranking research in Museum Studies in the UK.";
 		String[] images = {"UniversityofLeicester.jpg","UniversityofLeicester1.jpg","UniversityofLeicester2.jpg","UniversityofLeicester3.jpg"};
-		UniversityDetails undetails = new UniversityDetails(4, "University of Leicester", "University Road, Leicester, LE1 7RH UK", courses, 4, description, images, "Telephone:  +44 (0)116 252 2522.");
+		String reviews = "https://www.google.com/maps/place/University+of+Leicester/@52.6211425,-1.1272074,17z/data=!4m8!3m7!1s0x4877612fa55d947f:0xf8da17fed74e0044!8m2!3d52.6211393!4d-1.1246325!9m1!1b1!16zL20vMDF6bjR5?entry=ttu";
+		UniversityDetails undetails = new UniversityDetails(3, "University of Leicester", "University Road, Leicester, LE1 7RH UK", courses, 4, description, images, "Telephone:  +44 (0)116 252 2522.", reviews);
 				
 		this.universityRepo.save(undetails);
 	
