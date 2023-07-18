@@ -16,5 +16,6 @@ public class UniversityDetails_ {
 	public static volatile SingularAttribute<UniversityDetails, String[]> images;
 	public static volatile SingularAttribute<UniversityDetails, Double> rating;
 	public static volatile SingularAttribute<UniversityDetails, String> universityName;
+	public static volatile SingularAttribute<UniversityDetails, String> reviews;
 
 }

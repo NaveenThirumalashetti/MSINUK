@@ -10,4 +10,5 @@ public class MsinukBackendApplication {
 		SpringApplication.run(MsinukBackendApplication.class, args);
 	}
 
+
 }
