@@ -4,12 +4,12 @@ package com.msinuk.main.model;
 public class UserDTO {
 
 	private Long id;
-	private String FirstName;
-	private String LastName;
-	private String UserName;
+	private String firstName;
+	private String lastName;
+	private String userName;
 	private String password;
-	private Long lastVisited;
-	private Long[] Wishlist;
+	private Long lastVisited=0L;
+	private Long[] Wishlist= new Long[] {};
 	
 	public UserDTO() {
 		
@@ -18,9 +18,9 @@ public class UserDTO {
 			Long[] wishlist) {
 		super();
 		this.id = id;
-		FirstName = firstName;
-		LastName = lastName;
-		UserName = userName;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userName = userName;
 		this.password = password;
 		this.lastVisited = lastVisited;
 		Wishlist = wishlist;
@@ -32,22 +32,22 @@ public class UserDTO {
 		this.id = id;
 	}
 	public String getFirstName() {
-		return FirstName;
+		return firstName;
 	}
 	public void setFirstName(String firstName) {
-		FirstName = firstName;
+		this.firstName = firstName;
 	}
 	public String getLastName() {
-		return LastName;
+		return lastName;
 	}
 	public void setLastName(String lastName) {
-		LastName = lastName;
+		this.lastName = lastName;
 	}
 	public String getUserName() {
-		return UserName;
+		return userName;
 	}
 	public void setUserName(String userName) {
-		UserName = userName;
+		this.userName = userName;
 	}
 	public String getPassword() {
 		return password;

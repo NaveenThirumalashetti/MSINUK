@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.msinuk.main.model.LoginResponse;
 import com.msinuk.main.model.UserDTO;
 import com.msinuk.main.service.UserService;
@@ -22,8 +26,8 @@ public class UserController {
 	private UserService service;
 
 
-	@PostMapping("/addUser")
-	public LoginResponse addUser(@RequestBody UserDTO user){
+	@GetMapping("/addUser")
+	public LoginResponse addUser(@RequestParam("user") String user) throws JsonMappingException, JsonProcessingException{
 		return this.service.addUser(user);
 	}
 	

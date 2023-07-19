@@ -34,9 +34,9 @@ public class User {
 			Long[] wishlist) {
 		super();
 		this.id = id;
-		firstName = firstName;
-		lastName = lastName;
-		userName = userName;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userName = userName;
 		this.password = password;
 		this.lastVisited = lastVisited;
 		Wishlist = wishlist;
@@ -55,7 +55,7 @@ public class User {
 	}
 
 	public void setFirstName(String firstName) {
-		firstName = firstName;
+		this.firstName = firstName;
 	}
 
 	public String getLastName() {
@@ -63,7 +63,7 @@ public class User {
 	}
 
 	public void setLastName(String lastName) {
-		lastName = lastName;
+		this.lastName = lastName;
 	}
 
 	public String getUserName() {
@@ -71,7 +71,7 @@ public class User {
 	}
 
 	public void setUserName(String userName) {
-		userName = userName;
+		this.userName = userName;
 	}
 
 	public String getPassword() {
