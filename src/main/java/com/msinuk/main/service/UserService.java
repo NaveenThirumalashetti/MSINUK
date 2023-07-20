@@ -36,31 +36,31 @@ public class UserService {
 				userdto.getLastVisited(), userdto.getWishlist());
 		User user1 = this.repo.findByUserName(user.getUserName());
 		if(user1 != null) {
-			return new LoginResponse("UserName Already exits", false);
+			return new LoginResponse("UserName Already exits", false, null);
 		}
 		User newUser= this.repo.save(user);
 		if(newUser!=null) {
-			return new LoginResponse("User Resgistration Successful", true);
+			return new LoginResponse("User Resgistration Successful", true, newUser);
 		}
 		else {
-			return new LoginResponse("User Resgistration Failed", false);
+			return new LoginResponse("User Resgistration Failed", false, null);
 		}
 	}
 
 
 	public LoginResponse getUser(String username, String password) {
-        User user1 = this.repo.findByUserName(username);
-        if (user1 != null) {
-            String encodedPassword = user1.getPassword();
+        User user = this.repo.findByUserName(username);
+        if (user != null) {
+            String encodedPassword = user.getPassword();
             Boolean isPwdRight = encoder.matches(password, encodedPassword);
             if (isPwdRight) {
-                return new LoginResponse("Login Success", true);
+                return new LoginResponse("Login Success", true, user);
                 
             } else {
-                return new LoginResponse("password Not Match", false);
+                return new LoginResponse("password Not Match", false, null);
             }
         }else {
-            return new LoginResponse("UserName not exits", false);
+            return new LoginResponse("UserName not exits", false, null);
         }
 	}
 	

@@ -24,7 +24,7 @@ public class User {
 	
 	private Long lastVisited;
 	
-	private Long[] Wishlist;
+	private Long[] wishlist;
 	
 	public User() {
 		
@@ -39,7 +39,7 @@ public class User {
 		this.userName = userName;
 		this.password = password;
 		this.lastVisited = lastVisited;
-		Wishlist = wishlist;
+		this.wishlist = wishlist;
 	}
 
 	public Long getId() {
@@ -91,11 +91,11 @@ public class User {
 	}
 
 	public Long[] getWishlist() {
-		return Wishlist;
+		return wishlist;
 	}
 
 	public void setWishlist(Long[] wishlist) {
-		Wishlist = wishlist;
+		this.wishlist = wishlist;
 	}
 	
 }

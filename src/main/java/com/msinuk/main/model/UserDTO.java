@@ -9,7 +9,7 @@ public class UserDTO {
 	private String userName;
 	private String password;
 	private Long lastVisited=0L;
-	private Long[] Wishlist= new Long[] {};
+	private Long[] wishlist= new Long[] {};
 	
 	public UserDTO() {
 		
@@ -23,7 +23,7 @@ public class UserDTO {
 		this.userName = userName;
 		this.password = password;
 		this.lastVisited = lastVisited;
-		Wishlist = wishlist;
+		this.wishlist = wishlist;
 	}
 	public Long getId() {
 		return id;
@@ -62,10 +62,10 @@ public class UserDTO {
 		this.lastVisited = lastVisited;
 	}
 	public Long[] getWishlist() {
-		return Wishlist;
+		return wishlist;
 	}
 	public void setWishlist(Long[] wishlist) {
-		Wishlist = wishlist;
+		this.wishlist = wishlist;
 	}
 	
 }
