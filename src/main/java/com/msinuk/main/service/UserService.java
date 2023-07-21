@@ -63,5 +63,22 @@ public class UserService {
             return new LoginResponse("UserName not exits", false, null);
         }
 	}
+
+
+	public LoginResponse updateUser(String user) throws JsonMappingException, JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper();
+	    mapper.enable(SerializationFeature.INDENT_OUTPUT);
+		UserDTO userdto = mapper.readValue(user, UserDTO.class);
+		User updateUser = new User(userdto.getId(), userdto.getFirstName(), userdto.getLastName(), 
+				userdto.getUserName(), this.encoder.encode(userdto.getPassword()),
+				userdto.getLastVisited(), userdto.getWishlist());
+		User checkuser = this.repo.findByUserName(updateUser.getUserName());
+		if(checkuser == null) {
+			return new LoginResponse("UserName does not exits", false, null);
+		}
+		this.repo.setUserInfoById(updateUser.getLastVisited(),updateUser.getWishlist(),updateUser.getId());
+			return new LoginResponse("User Update Successful", true, null);
+
+	}
 	
 }

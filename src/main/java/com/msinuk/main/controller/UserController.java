@@ -30,6 +30,10 @@ public class UserController {
 	public LoginResponse addUser(@RequestParam("user") String user) throws JsonMappingException, JsonProcessingException{
 		return this.service.addUser(user);
 	}
+	@GetMapping("/updateUser")
+	public LoginResponse updateUser(@RequestParam("user") String user) throws JsonMappingException, JsonProcessingException{
+		return this.service.updateUser(user);
+	}
 	
 	@GetMapping("/user")
 	public LoginResponse getUser(@RequestParam("username") String username,@RequestParam("password") String password) {
