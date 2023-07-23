@@ -156,7 +156,32 @@ public class UniversityService {
 				+ "	Leicester is well known for the strength of it its research, with its Archaeology department recently discovered the remains of Richard III, pushing it into the international spotlight. The Department of Physics and Astronomy hosts Europe’s largest university-based space research facility and the School of Museum Studies remains one of the top research departments in the country, containing the highest ranking research in Museum Studies in the UK.";
 		String[] images = {"UniversityofLeicester.jpg","UniversityofLeicester1.jpg","UniversityofLeicester2.jpg","UniversityofLeicester3.jpg"};
 		String reviews = "https://www.google.com/maps/place/University+of+Leicester/@52.6211425,-1.1272074,17z/data=!4m8!3m7!1s0x4877612fa55d947f:0xf8da17fed74e0044!8m2!3d52.6211393!4d-1.1246325!9m1!1b1!16zL20vMDF6bjR5?entry=ttu";
-		UniversityDetails undetails = new UniversityDetails(3, "University of Leicester", "University Road, Leicester, LE1 7RH UK", courses, 4, description, images, "Telephone:  +44 (0)116 252 2522.", reviews);
+		String courseMap = "{\r\n"
+				+ "  \"Anaesthesia and Peri-Operative Sciences PgDip\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/anaesthesia-and-perioperative-sciences-pgdip/\",\r\n"
+				+ "  \"Clinical Research MSc\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/clinical-research-msc/\",\r\n"
+				+ "  \"Medicine PhD\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/medicine-phd/\",\r\n"
+				+ "  \"Medicine M.D.\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/medicine-md/\",\r\n"
+				+ "  \"Biological Science PhD\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/biological-science-phd/\",\r\n"
+				+ "  \"Food Challenges for the 21st Century (Distance Learning) PgCert\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/food-challenges-for-the-21st-century-distance-learning-pgcert/\",\r\n"
+				+ "  \"Food Security (Distance Learning) MSc\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/food-security-distance-learning-msc/\",\r\n"
+				+ "  \"Food Security (Distance Learning) PgDip\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/food-security-distance-learning-pgdip/\",\r\n"
+				+ "  \"Plant Sciences MSc by Research\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/plant-sciences-msc-by-research/\",\r\n"
+				+ "  \"Electronic Engineering MSc\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/electronic-engineering-msc/\",\r\n"
+				+ "  \"Mechanical Engineering (Advanced) MSc\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/mechanical-engineering-advanced-msc/\",\r\n"
+				+ "  \"Mechanical Engineering with Project Management MSc\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/mechanical-engineering-with-project-management-msc/\",\r\n"
+				+ "  \"Natural Sciences MSc by Research\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/natural-sciences-msc-by-research/\",\r\n"
+				+ "  \"Art PhD\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/art-phd/\",\r\n"
+				+ "  \"Arts Management MA\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/arts-management-ma/\",\r\n"
+				+ "  \"Contemporary Arts PhD\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/contemporary-arts-phd/\",\r\n"
+				+ "  \"Fine Art MA\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/fine-art-ma/\",\r\n"
+				+ "  \"Architecture PhD\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/architecture-phd/\",\r\n"
+				+ "  \"Architecture (Master of) MArch\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/architecture-master-of-march/\",\r\n"
+				+ "  \"Accounting and Finance PhD\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/accounting-and-finance-phd/\",\r\n"
+				+ "  \"Accounting and Financial Management MSc\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/accounting-and-financial-management-msc/\",\r\n"
+				+ "  \"Finance MSc\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/finance-msc/\",\r\n"
+				+ "  \"Financial Analysis (Advanced) MSc\": \"https://www.lancaster.ac.uk/study/postgraduate/postgraduate-courses/financial-analysis-advanced-msc/\"\r\n"
+				+ "}";
+		UniversityDetails undetails = new UniversityDetails(3, "University of Leicester", "University Road, Leicester, LE1 7RH UK", courses, 4, description, images, "Telephone:  +44 (0)116 252 2522.", reviews,courseMap);
 				
 		this.universityRepo.save(undetails);
 	

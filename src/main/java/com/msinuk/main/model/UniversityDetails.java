@@ -22,6 +22,8 @@ public class UniversityDetails {
 	@ElementCollection
 	@Column(length = 2000)
 	private Map<String,String[]> courses;
+	@Column(length = 10000)
+	private String courseMap;
 	private double rating;
 	@Column(length=2000)
 	private String description;
@@ -37,7 +39,7 @@ public class UniversityDetails {
 	}
 	
 	public UniversityDetails(long id, String universityName, String address, Map<String,String[]> courses, double rating,
-			String description, String[] images, String contactDetails, String reviews) {
+			String description, String[] images, String contactDetails, String reviews, String courseMap) {
 		this.id = id;
 		this.universityName = universityName;
 		this.address = address;
@@ -47,6 +49,7 @@ public class UniversityDetails {
 		this.images = images;
 		this.contactDetails = contactDetails;
 		this.reviews = reviews;
+		this.courseMap = courseMap;
 	}
 	public String[] getImages() {
 		return images;
@@ -100,9 +103,17 @@ public class UniversityDetails {
 	public String getReviews() {
 		return reviews;
 	}
-
 	public void setReviews(String reviews) {
 		this.reviews = reviews;
 	}
+
+	public String getCourseMap() {
+		return courseMap;
+	}
+
+	public void setCourseMap(String courseMap) {
+		this.courseMap = courseMap;
+	}
+	
 
 }
