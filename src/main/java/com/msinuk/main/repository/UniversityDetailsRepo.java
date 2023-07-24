@@ -11,4 +11,5 @@ public interface UniversityDetailsRepo extends JpaRepository<UniversityDetails, 
 
 	List<UniversityDetails> findAllByOrderByRatingDesc();
 	
+	
 }

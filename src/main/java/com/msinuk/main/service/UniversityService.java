@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -38,6 +39,14 @@ public class UniversityService {
 
 	public List<UniversityDetails> getUniversities() {
 		return this.universityRepo.findAllByOrderByRatingDesc();
+	}
+	public List<UniversityDetails> getWishList(String ids) {
+		String[] idArr = ids.split(",");
+		List<Long> idList = new ArrayList<>();
+		for(String id :idArr) {
+			idList.add(Long.parseLong(id));
+		}
+		return this.universityRepo.findAllById(idList);
 	}
 	public List<UniversityDetails> addUniversities() throws JsonMappingException, JsonProcessingException {
 	

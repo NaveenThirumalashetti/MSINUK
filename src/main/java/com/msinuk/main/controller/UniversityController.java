@@ -40,5 +40,9 @@ public class UniversityController {
 	public Optional<UniversityDetails> getUniversityByName(@RequestParam("id") String unid){
 		return this.service.getUniversityById(unid);
 	}
+	@GetMapping("/getWishList")
+	public List<UniversityDetails> getWishList(@RequestParam("ids") String unids){
+		return this.service.getWishList(unids);
+	}
 
 }
