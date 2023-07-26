@@ -1,8 +1,5 @@
 package com.msinuk.main.service;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,7 +9,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.msinuk.main.model.LoginResponse;
-import com.msinuk.main.model.UniversityDetails;
 import com.msinuk.main.model.User;
 import com.msinuk.main.model.UserDTO;
 import com.msinuk.main.repository.UserRepo;
